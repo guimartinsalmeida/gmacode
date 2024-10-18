@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './App.css';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -11,9 +10,7 @@ function App() {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get(
-          `https://api.unsplash.com/search/photos?page=1&query=space&client_id=${API_KEY}`
-        );
+        const response = await fetch(`https://api.unsplash.com/search/photos?page=1&query=space&client_id=${API_KEY}`);
         const imageUrls = response.data.results.map((image) => image.urls.full);
         setImages(imageUrls);
         setBackgroundImage(imageUrls[0]); 
